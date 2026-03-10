@@ -21,4 +21,4 @@ images:
 
   # 4. 部署器镜像本身（Google 有时也需要扫描它）
   deployer:
-    image: us-central1-docker.pkg.dev/alluxio-marketplace-public/alluxio/alluxio-deployer:latest
+    image: us-central1-docker.pkg.dev/alluxio-marketplace-public/alluxio/deployer:latest
