@@ -10,9 +10,10 @@ properties:
 # 这里的配置决定了 GCP 控制台的 UI 展示以及参数如何传递给 Helm
 x-google-marketplace:
   schemaVersion: v2
+  applicationApiVersion: v1
   applicationMetadata:
     title: "Alluxio Operator"
-    version: "1.0.0" # 请根据你的实际版本修改
+    version: "3.4.5" # 请根据你的实际版本修改
 
   # 定义 UI 上的输入控件
   widgets:
