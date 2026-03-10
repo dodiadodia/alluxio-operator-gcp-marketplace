@@ -5,6 +5,8 @@ metadata:
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "common.labels" (dict "component" "application" "Release" .Release "Chart" .Chart "Values" .Values) | nindent 4 }}
+  annotations:
+    marketplace.cloud.google.com/deploy-info: '{"partner_id": "alluxio", "product_id": "alluxio-operator", "partner_name": "Alluxio"}'
 spec:
   selector:
     matchLabels:
