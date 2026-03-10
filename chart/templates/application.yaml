@@ -1,0 +1,29 @@
+apiVersion: app.k8s.io/v1
+kind: Application
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "common.labels" (dict "component" "application" "Release" .Release "Chart" .Chart "Values" .Values) | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "common.matchLabels" (dict "component" "application" "Release" .Release "Chart" .Chart "Values" .Values) | nindent 6 }}
+  componentKinds:
+  - group: apps
+    kind: Deployment
+  - group: apps
+    kind: StatefulSet
+  - group: apps
+    kind: DaemonSet
+  - group: ""
+    kind: Service
+  - group: ""
+    kind: ConfigMap
+  descriptor:
+    type: "Alluxio"
+    version: {{ .Chart.AppVersion | quote }}
+    description: "Alluxio Operator for Data Orchestration"
+    maintainers:
+    - name: Alluxio
+      email: info@alluxio.com
