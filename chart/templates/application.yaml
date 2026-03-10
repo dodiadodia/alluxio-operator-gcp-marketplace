@@ -24,7 +24,7 @@ spec:
     kind: ConfigMap
   descriptor:
     type: "Alluxio"
-    version: {{ .Chart.AppVersion | quote }}
+    version: "0.1"
     description: "Alluxio Operator for Data Orchestration"
     maintainers:
     - name: Alluxio
