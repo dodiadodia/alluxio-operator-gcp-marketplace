@@ -20,10 +20,10 @@ x-google-marketplace:
     version: "3.4.5" # 请根据你的实际版本修改
 
   images:
-    - alluxio-k8s-operator: {}
-    - csi-provisioner: {}
-    - csi-node-driver-registrar: {}
-    - deployer: {}
+    alluxio-k8s-operator: {}
+    csi-provisioner: {}
+    csi-node-driver-registrar: {}
+    deployer: {}
 
   # 定义 UI 上的输入控件
   widgets:
