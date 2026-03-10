@@ -24,7 +24,7 @@ spec:
     kind: ConfigMap
   descriptor:
     type: "Alluxio"
-    version: "0.1"
+    version: "3.4.5"
     description: "Alluxio Operator for Data Orchestration"
     maintainers:
     - name: Alluxio
