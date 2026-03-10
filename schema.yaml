@@ -11,6 +11,7 @@ properties:
 x-google-marketplace:
   schemaVersion: v2
   applicationApiVersion: v1
+  publishedVersion: "3.4.5"
   applicationMetadata:
     title: "Alluxio Operator"
     version: "3.4.5" # 请根据你的实际版本修改
