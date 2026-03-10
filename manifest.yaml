@@ -1,0 +1,24 @@
+manifestVersion: v1
+
+# 定义主要的 Helm Chart
+chart:
+  name: alluxio-operator
+  version: 3.4.5  # 请确保这与你 Chart.yaml 中的 version 一致
+
+# 列出所有需要被 GCP 扫描和分发的镜像
+images:
+  # 1. 主 Operator 镜像
+  alluxio-k8s-operator:
+    image: us-central1-docker.pkg.dev/alluxio-marketplace-public/alluxio/k8s-operator:3.4.5
+  
+  # 2. CSI Provisioner 镜像
+  csi-provisioner:
+    image: us-central1-docker.pkg.dev/alluxio-marketplace-public/alluxio/csi-provisioner:v2.0.5
+  
+  # 3. CSI Registrar 镜像
+  csi-node-driver-registrar:
+    image: us-central1-docker.pkg.dev/alluxio-marketplace-public/alluxio/csi-node-driver-registrar:v2.0.0
+
+  # 4. 部署器镜像本身（Google 有时也需要扫描它）
+  deployer:
+    image: us-central1-docker.pkg.dev/alluxio-marketplace-public/alluxio/alluxio-deployer:latest

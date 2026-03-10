@@ -1,0 +1,67 @@
+nameOverride: ""
+fullnameOverride: alluxio
+global:
+  image: us-central1-docker.pkg.dev/alluxio-marketplace-public/alluxio/k8s-operator
+  imageTag: 3.4.5
+  imagePullSecrets:
+
+clusterController:
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 10m
+      memory: 64Mi
+
+ufsController:
+  resources:
+    limits:
+      cpu: 500m
+      memory: 256Mi
+    requests:
+      cpu: 10m
+      memory: 64Mi
+
+collectinfoController:
+  resources:
+    limits:
+      cpu: 500m
+      memory: 256Mi
+    requests:
+      cpu: 10m
+      memory: 64Mi
+
+licenseController:
+  resources:
+    limits:
+      cpu: 500m
+      memory: 256Mi
+    requests:
+      cpu: 10m
+      memory: 64Mi
+
+csi:
+  enabled: true
+  fullnameOverride: alluxio
+
+  controllerPlugin:
+    provisioner:
+      image: us-central1-docker.pkg.dev/alluxio-marketplace-public/alluxio/csi-provisioner:v2.0.5
+      resources:
+        limits:
+          cpu: 200m
+          memory: 1Gi
+        requests:
+          cpu: 10m
+          memory: 20Mi
+
+  nodePlugin:
+    driverRegistrar:
+      image: us-central1-docker.pkg.dev/alluxio-marketplace-public/alluxio/csi-node-driver-registrar:v2.0.0
+
+console:
+  enabled: false
+  
+fdb-operator:
+  enabled: false
