@@ -12,6 +12,9 @@ x-google-marketplace:
   schemaVersion: v2
   applicationApiVersion: v1
   publishedVersion: "3.4.5"
+  publishedVersionMetadata:
+    releaseNote: "Initial release of Alluxio Operator 3.4.5 on GCP Marketplace"
+    releaseDate: "2026-03-10" # 建议填写当天日期
   applicationMetadata:
     title: "Alluxio Operator"
     version: "3.4.5" # 请根据你的实际版本修改
