@@ -3,9 +3,13 @@ properties:
   # 应用实例的显示名称
   name:
     type: string
+    x-google-marketplace:
+      type: NAME
   # 用户在界面上选择的目标命名空间
   namespace:
     type: string
+    x-google-marketplace:
+      type: NAMESPACE
 
 # 这里的配置决定了 GCP 控制台的 UI 展示以及参数如何传递给 Helm
 x-google-marketplace:
