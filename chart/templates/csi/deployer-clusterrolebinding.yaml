@@ -1,0 +1,41 @@
+kind: ClusterRole
+metadata:
+  name: {{ .Values.name }}-deployer-clusterrole
+  annotations:
+    marketplace.cloud.google.com/cluster-scoped: "true"
+rules:
+
+- apiGroups:
+  - apiextensions.k8s.io
+  resources:
+  - customresourcedefinitions
+  verbs: ["*"]
+
+- apiGroups:
+  - rbac.authorization.k8s.io
+  resources:
+  - clusterroles
+  - clusterrolebindings
+  verbs: ["*"]
+
+- apiGroups:
+  - storage.k8s.io
+  resources:
+  - csidrivers
+  verbs: ["*"]
+
+---
+
+kind: ClusterRoleBinding
+metadata:
+  name: {{ .Values.name }}-deployer-crb
+  annotations:
+    marketplace.cloud.google.com/cluster-scoped: "true"
+subjects:
+- kind: ServiceAccount
+  name: {{ .Values.name }}-deployer-sa
+  namespace: {{ .Values.namespace }}
+roleRef:
+  kind: ClusterRole
+  name: {{ .Values.name }}-deployer-clusterrole
+  apiGroup: rbac.authorization.k8s.io
