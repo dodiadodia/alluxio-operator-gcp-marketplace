@@ -22,3 +22,30 @@ images:
   # 4. 部署器镜像本身（Google 有时也需要扫描它）
   deployer:
     image: us-central1-docker.pkg.dev/alluxio-marketplace-public/alluxio/deployer:latest
+
+# 关键：解决 mpdev 报错的权限声明
+actions:
+  install:
+    deployer_rbac:
+      cluster_role:
+        rules:
+        # 允许部署器管理 CRD（因为我们将 CRD 移到了 templates）
+        - apiGroups: ["apiextensions.k8s.io"]
+          resources: ["customresourcedefinitions"]
+          verbs: ["*"]
+        # 允许部署器管理集群角色（解决你日志中 ClusterRole Forbidden 的问题）
+        - apiGroups: ["rbac.authorization.k8s.io"]
+          resources: ["clusterroles", "clusterrolebindings"]
+          verbs: ["*"]
+        # 允许部署器管理存储类驱动（解决你日志中 CSIDriver Forbidden 的问题）
+        - apiGroups: ["storage.k8s.io"]
+          resources: ["csidrivers"]
+          verbs: ["*"]
+        # 允许部署器管理 Application 资源
+        - apiGroups: ["app.k8s.io"]
+          resources: ["applications"]
+          verbs: ["*"]
+        # 允许操作所有命名空间内的标准资源
+        - apiGroups: ["", "apps", "batch"]
+          resources: ["*"]
+          verbs: ["*"]
