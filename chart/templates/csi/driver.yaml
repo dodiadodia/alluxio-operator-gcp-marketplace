@@ -17,6 +17,8 @@ apiVersion: {{ ternary "storage.k8s.io/v1" "storage.k8s.io/v1beta1" (semverCompa
 kind: CSIDriver
 metadata:
   name: alluxio
+  annotations:
+    marketplace.cloud.google.com/cluster-scoped: "true"
 spec:
   # used by CSI developer
   attachRequired: false

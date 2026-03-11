@@ -22,6 +22,8 @@ kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: alluxio-external-provisioner-role
+  annotations:
+    marketplace.cloud.google.com/cluster-scoped: "true"
 rules:
   - apiGroups: [""]
     resources: ["persistentvolumes"]
@@ -52,6 +54,8 @@ kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: alluxio-csi-provisioner-binding
+  annotations:
+    marketplace.cloud.google.com/cluster-scoped: "true"
 subjects:
   - kind: ServiceAccount
     name: alluxio-csi-sa

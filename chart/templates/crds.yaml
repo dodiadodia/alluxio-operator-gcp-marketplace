@@ -14,6 +14,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.16.5
+    marketplace.cloud.google.com/cluster-scoped: "true"
   name: alluxioclusters.k8s-operator.alluxio.com
 spec:
   group: k8s-operator.alluxio.com
@@ -12652,6 +12653,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.16.5
+    marketplace.cloud.google.com/cluster-scoped: "true"
   name: clustergroups.k8s-operator.alluxio.com
 spec:
   group: k8s-operator.alluxio.com
@@ -28132,6 +28134,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.16.5
+    marketplace.cloud.google.com/cluster-scoped: "true"
   name: collectinfoes.k8s-operator.alluxio.com
 spec:
   group: k8s-operator.alluxio.com
@@ -28270,6 +28273,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.16.5
+    marketplace.cloud.google.com/cluster-scoped: "true"
   name: licenses.k8s-operator.alluxio.com
 spec:
   group: k8s-operator.alluxio.com
@@ -28445,6 +28449,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.16.5
+    marketplace.cloud.google.com/cluster-scoped: "true"
   name: underfilesystems.k8s-operator.alluxio.com
 spec:
   group: k8s-operator.alluxio.com

@@ -17,6 +17,8 @@ metadata:
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
+annotations:
+    marketplace.cloud.google.com/cluster-scoped: "true"
 metadata:
   name: alluxio-operator-clusterRole
 rules:
