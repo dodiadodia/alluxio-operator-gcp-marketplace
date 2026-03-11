@@ -1,51 +1,53 @@
 manifestVersion: v1
 
-# 定义主要的 Helm Chart
 chart:
   name: alluxio-operator
-  version: 3.4.5  # 请确保这与你 Chart.yaml 中的 version 一致
+  version: 3.4.5
 
-# 列出所有需要被 GCP 扫描和分发的镜像
 images:
-  # 1. 主 Operator 镜像
   alluxio-k8s-operator:
     image: us-central1-docker.pkg.dev/alluxio-marketplace-public/alluxio/k8s-operator:3.4.5
-  
-  # 2. CSI Provisioner 镜像
+
   csi-provisioner:
     image: us-central1-docker.pkg.dev/alluxio-marketplace-public/alluxio/csi-provisioner:v2.0.5
-  
-  # 3. CSI Registrar 镜像
+
   csi-node-driver-registrar:
     image: us-central1-docker.pkg.dev/alluxio-marketplace-public/alluxio/csi-node-driver-registrar:v2.0.0
 
-  # 4. 部署器镜像本身（Google 有时也需要扫描它）
   deployer:
     image: us-central1-docker.pkg.dev/alluxio-marketplace-public/alluxio/deployer:latest
 
-# 关键：解决 mpdev 报错的权限声明
-actions:
-  install:
-    deployer_rbac:
-      cluster_role:
-        rules:
-        # 允许部署器管理 CRD（因为我们将 CRD 移到了 templates）
-        - apiGroups: ["apiextensions.k8s.io"]
-          resources: ["customresourcedefinitions"]
-          verbs: ["*"]
-        # 允许部署器管理集群角色（解决你日志中 ClusterRole Forbidden 的问题）
-        - apiGroups: ["rbac.authorization.k8s.io"]
-          resources: ["clusterroles", "clusterrolebindings"]
-          verbs: ["*"]
-        # 允许部署器管理存储类驱动（解决你日志中 CSIDriver Forbidden 的问题）
-        - apiGroups: ["storage.k8s.io"]
-          resources: ["csidrivers"]
-          verbs: ["*"]
-        # 允许部署器管理 Application 资源
-        - apiGroups: ["app.k8s.io"]
-          resources: ["applications"]
-          verbs: ["*"]
-        # 允许操作所有命名空间内的标准资源
-        - apiGroups: ["", "apps", "batch"]
-          resources: ["*"]
-          verbs: ["*"]
+
+x-google-marketplace:
+
+  deployerServiceAccount:
+    description: Deploys Alluxio Operator
+
+  deployer:
+
+    helm:
+      chart: alluxio-operator
+
+  deployer_rbac:
+    cluster_role:
+      rules:
+
+      - apiGroups: ["apiextensions.k8s.io"]
+        resources: ["customresourcedefinitions"]
+        verbs: ["*"]
+
+      - apiGroups: ["rbac.authorization.k8s.io"]
+        resources: ["clusterroles","clusterrolebindings"]
+        verbs: ["*"]
+
+      - apiGroups: ["storage.k8s.io"]
+        resources: ["csidrivers"]
+        verbs: ["*"]
+
+      - apiGroups: ["app.k8s.io"]
+        resources: ["applications"]
+        verbs: ["*"]
+
+      - apiGroups: ["", "apps", "batch"]
+        resources: ["*"]
+        verbs: ["*"]
